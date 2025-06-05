@@ -26,6 +26,10 @@ dependencies {
     compileOnly 'org.apache.tomcat:annotations-api:6.0.53'
 }
 
+repositories {
+    mavenCentral()
+}
+
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:3.24.4"
@@ -51,4 +55,8 @@ sourceSets {
             srcDirs += 'build/generated/source/proto/main/grpc'
         }
     }
+}
+
+tasks.named('bootJar') {
+    mainClass.set('com.example.userservice.UserServiceApplication')
 }

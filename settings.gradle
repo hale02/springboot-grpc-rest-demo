@@ -1,1 +1,3 @@
 rootProject.name = 'springboot-grpc-demo'
+include 'user-service'
+include 'base'
