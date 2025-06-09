@@ -1,0 +1,10 @@
+spring:
+  application:
+   name: order-service
+
+grpc:
+   server:
+     port: 9091
+
+server:
+  port: 8082
