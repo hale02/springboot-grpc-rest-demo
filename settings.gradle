@@ -1,3 +1,6 @@
-rootProject.name = 'springboot-grpc-demo'
-include 'user-service'
+rootProject.name = 'springboot-grpc-rest-demo'
+
 include 'base'
+include 'shared-proto'
+include 'order-service'
+include 'user-service'

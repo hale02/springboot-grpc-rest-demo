@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.13'
+    id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.ecommerce'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    mapstructVersion = '1.5.5.Final'
+    lombokVersion = '1.18.30'
+    grpcSpringBootStarterVersion = '2.15.0.RELEASE'
+    protobufUtilVersion = '3.21.12'
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // gRPC Server + Client
+    implementation "net.devh:grpc-server-spring-boot-starter:${grpcSpringBootStarterVersion}"
+    implementation "net.devh:grpc-client-spring-boot-starter:${grpcSpringBootStarterVersion}"
+
+    // Proto-generated classes
+    implementation project(':shared-proto')
+
+    // Database
+    runtimeOnly 'com.h2database:h2'
+
+    // Utilities
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "com.google.protobuf:protobuf-java-util:${protobufUtilVersion}"
+
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
